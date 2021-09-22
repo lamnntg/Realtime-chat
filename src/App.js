@@ -1,11 +1,25 @@
-import './App.scss';
-import Login from './components/Login';
+import "./App.scss";
+import Login from "./components/Login";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import ChatRoom from "./components/ChatRoom";
+import AuthProviderContext from "./Contexts/AuthProviderContext";
 
 function App() {
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <BrowserRouter>
+    <AuthProviderContext>
+      <div className="App">
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/">
+            <ChatRoom />
+          </Route>
+        </Switch>
+      </div>
+    </AuthProviderContext>
+    </BrowserRouter>
   );
 }
 
