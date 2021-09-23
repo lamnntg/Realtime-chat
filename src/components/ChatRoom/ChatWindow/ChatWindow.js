@@ -3,7 +3,13 @@ import React from 'react'
 export default function ChatWindow() {
   return (
     <div>
-      abc
+      <header>
+
+      </header>
+
+      <div>
+
+      </div>
     </div>
   )
 }

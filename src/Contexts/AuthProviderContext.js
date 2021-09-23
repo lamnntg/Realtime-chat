@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
-import { auth } from "../firebase/config";
+import { app } from "../firebase/config";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Spin } from "antd";
 
@@ -12,7 +12,7 @@ function AuthProviderContext ({children}) {
   const [isLoading, setIsLoading] = useState(true);
   
   const history = useHistory();
-
+  const auth = getAuth(app);
   React.useEffect(() => {
     const unsubscibed = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -23,16 +23,15 @@ function AuthProviderContext ({children}) {
         setIsLoading(false);
         history.push("/");
       } else {
+        setIsLoading(false);
         // User is signed out
         history.push("/login");
       }
     });
-
     return () => {
       unsubscibed();
     }
   }, [history]);
-
   return (
     <AuthContext.Provider value={{ user }}>
       { isLoading ? <Spin /> : children }

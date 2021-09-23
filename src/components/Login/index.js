@@ -8,7 +8,6 @@ const provider = new GoogleAuthProvider();
 // const provider = new FacebookAuthProvider();
 
 function Login() {
-  const history = useHistory();
   const handleFBLogin = () => {
     signInWithPopup(auth, provider).then((result) => {
       // The signed-in user info.

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Row, Col } from "antd";
-import UserInfo from './UserInfo';
-import RoomList from './RoomList';
+import UserInfo from './UserInfo/UserInfo';
+import RoomList from './RoomList/RoomList';
 
 function Siderbar(props) {
   return (
-    <div>
+    <div style={{backgroundColor:"while", height:"100vh", borderRight:"1px solid black"}}>
       <Row>
         <Col span={24}>
           <UserInfo />

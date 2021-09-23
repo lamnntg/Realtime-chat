@@ -1,11 +1,11 @@
 import React from "react";
 import { Row, Col } from "antd";
 import Siderbar from "./Siderbar";
-import ChatWindow from "./ChatWindow";
+import ChatWindow from "./ChatWindow/ChatWindow";
 
 function ChatRoom(props) {
   return (
-    <div>
+    <div >
       <Row>
         <Col span={6}>
           <Siderbar />
