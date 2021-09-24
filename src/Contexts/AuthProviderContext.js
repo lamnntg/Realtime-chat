@@ -7,10 +7,10 @@ import { Spin } from "antd";
 
 export const AuthContext = React.createContext();
 
-function AuthProviderContext ({children}) {
+function AuthProviderContext({ children }) {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  
+
   const history = useHistory();
   const auth = getAuth(app);
   React.useEffect(() => {
@@ -28,13 +28,25 @@ function AuthProviderContext ({children}) {
         history.push("/login");
       }
     });
+
     return () => {
       unsubscibed();
-    }
+    };
   }, [history]);
   return (
     <AuthContext.Provider value={{ user }}>
-      { isLoading ? <Spin /> : children }
+      {isLoading ? (
+        <Spin
+          size="large"
+          style={{
+            position: "absolute",
+            left: "50%",
+            bottom : "50%"
+          }}
+        />
+      ) : (
+        children
+      )}
     </AuthContext.Provider>
   );
 }

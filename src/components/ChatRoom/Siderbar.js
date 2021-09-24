@@ -5,7 +5,7 @@ import RoomList from './RoomList/RoomList';
 
 function Siderbar(props) {
   return (
-    <div style={{backgroundColor:"while", height:"100vh", borderRight:"1px solid black"}}>
+    <div style={{backgroundColor:"while", height:"100vh", borderRight:"0.3px solid #D9D9D9"}}>
       <Row>
         <Col span={24}>
           <UserInfo />

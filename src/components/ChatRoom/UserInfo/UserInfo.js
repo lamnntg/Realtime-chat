@@ -11,7 +11,8 @@ export default function UserInfo() {
   const logOut = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
-      <Redirect to="/login" />
+      //da su dung use history
+      // <Redirect to="/login" />
     }).catch((error) => {
       // An error happened.
     });
