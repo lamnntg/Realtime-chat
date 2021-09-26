@@ -8,9 +8,9 @@ import { AuthContext } from "../../../Contexts/AuthProviderContext";
 export default function UserInfo() {
   const { user } = useContext(AuthContext)
   console.log(user);
-  const logOut = () => {
+  const logOut = async () => {
     const auth = getAuth();
-    signOut(auth).then(() => {
+    await signOut(auth).then(() => {
       //da su dung use history
       // <Redirect to="/login" />
     }).catch((error) => {

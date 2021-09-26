@@ -1,10 +1,17 @@
 import "./ChatWindow.scss"
 import { Avatar, Button, Tooltip, Input, Affix, Form } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { UserAddOutlined, SendOutlined } from '@ant-design/icons';
 import Message from '../Message/Message';
 
 export default function ChatWindow() {
+  useEffect(() => {
+    
+    return () => {
+      
+    }
+  }, [])
+
   return (
     <div>
       <header>
@@ -33,9 +40,9 @@ export default function ChatWindow() {
       <div className="message">
         <div className="message-list">
           <Message name="name" avatarUrl="https://lh3.googleusercontent.com/a-/AOh14GhlyLWplS59zVxnFiyMMBXucr_U4ofIfwS7FPTd=s96-c" createdAt="12-03-1999" message="king born" />
-          <Message />
-          <Message />
-          <Message />
+          <Message name="name" avatarUrl="https://lh3.googleusercontent.com/a-/AOh14GhlyLWplS59zVxnFiyMMBXucr_U4ofIfwS7FPTd=s96-c" createdAt="12-03-1999" message="king born" />
+          <Message name="name" avatarUrl="https://lh3.googleusercontent.com/a-/AOh14GhlyLWplS59zVxnFiyMMBXucr_U4ofIfwS7FPTd=s96-c" createdAt="12-03-1999" message="king born" />
+          <Message name="name" avatarUrl="https://lh3.googleusercontent.com/a-/AOh14GhlyLWplS59zVxnFiyMMBXucr_U4ofIfwS7FPTd=s96-c" createdAt="12-03-1999" message="king born" />
         </div>
         <div>
           <Form className="message-input">

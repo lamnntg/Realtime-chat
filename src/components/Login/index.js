@@ -5,7 +5,7 @@ import { auth } from "../../firebase/config";
 import { GoogleOutlined, FacebookOutlined } from "@ant-design/icons";
 import { collection, addDoc } from "firebase/firestore"; 
 import { getFirestore } from "firebase/firestore";
-import { addDocument } from "../../firebase/services";
+import { addDocument, findUserExist } from "../../firebase/services";
 const provider = new GoogleAuthProvider();
 // const provider = new FacebookAuthProvider();
 
@@ -38,13 +38,17 @@ function Login() {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
     const db = getFirestore();
-    await addDocument(db, {
-      displayName: user.displayName,
-      email: user.email,
-      photoURL: user.photoURL,
-      uid: user.uid,
-      providerId: user.providerData[0].providerId
-    });
+
+    const isExist = await findUserExist(db, user.uid);
+    if (!isExist) {
+      await addDocument(db, {
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        uid: user.uid,
+        providerId: user.providerData[0].providerId
+      });
+    }
   }
 
   return (

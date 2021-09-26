@@ -1,14 +1,14 @@
 import { db } from "./config";
-import { addDoc, collection } from "firebase/firestore"; 
+import { query, getDocs, where, addDoc, collection } from "firebase/firestore"; 
 
 /**
  * 
- * @param {object} collectionName 
+ * @param {object} collectionObject 
  * @param {object} data 
  */
-export const addDocument = async (collectionName, data) => {
+export const addDocument = async (collectionObject, data) => {
   try {
-    const docRef = await addDoc(collection(collectionName, "users"), 
+    const docRef = await addDoc(collection(collectionObject, "users"), 
       {
         ...data,
         create_at: Date.now()
@@ -18,4 +18,19 @@ export const addDocument = async (collectionName, data) => {
   } catch (e) {
     console.error("Error adding document: ", e);
   }
+}
+
+/** 
+ * 
+ * @param {object} collectionObject 
+ * @param {string} uid
+ * 
+*/
+export const findUserExist = async (collectionObject, uid) => {
+  // Create a reference to the cities collection
+  const userRef = collection(collectionObject, "users");
+  const q = query(userRef, where("uid", "==", uid));
+  const user = await getDocs(q);
+
+  return !user.empty;
 }
