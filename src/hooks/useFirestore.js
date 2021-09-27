@@ -1,9 +1,10 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 export default function useFirestore(collection, condition) {
+  const { rooms, setRooms } = useState([]);
   useEffect(() => {
     /**
      * {
@@ -28,5 +29,5 @@ export default function useFirestore(collection, condition) {
       });
       console.log("Current rooms : ", rooms.join(", "));
     });
-  }, [])
+  }, [rooms])
 }
