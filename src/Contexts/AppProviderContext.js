@@ -1,10 +1,12 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { AuthContext } from "./AuthProviderContext";
 import useFirestore from "../hooks/useFirestore";
 
-export const RoomContext = React.createContext();
+export const AppContext = React.createContext();
 
 export default function AppProviderContext({ children }) {
+  const [ isAddRoomVisible, setIsAddRoomVisible ] = useState(false);
+
   const { user } = useContext(AuthContext);
 
   const roomCondition = useMemo(() => {
@@ -18,6 +20,6 @@ export default function AppProviderContext({ children }) {
   const rooms = useFirestore("rooms", roomCondition);
 
   return (
-    <RoomContext.Provider value={{ rooms }}>{children}</RoomContext.Provider>
+    <AppContext.Provider value={{ rooms, isAddRoomVisible, setIsAddRoomVisible }}>{children}</AppContext.Provider>
   );
 }
