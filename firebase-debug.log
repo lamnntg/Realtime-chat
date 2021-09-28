@@ -1,1 +1,4 @@
-[debug] [2021-09-27T16:18:21.570Z] ----------------------------------------------------------------------
+[debug] [2021-09-28T15:37:22.566Z] ----------------------------------------------------------------------
+[debug] [2021-09-28T15:37:22.568Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lam Nguyen\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2021-09-28T15:37:22.568Z] CLI Version:   9.18.0
+[debug] [2021-09-28T15:37:22.568Z] Platform:      win32

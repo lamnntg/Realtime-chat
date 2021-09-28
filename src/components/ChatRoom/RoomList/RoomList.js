@@ -1,42 +1,36 @@
-import { Button, Collapse, Typography } from 'antd'
-import React from 'react';
-import './RoomList.scss';
-import { PlusSquareOutlined, CaretRightOutlined } from "@ant-design/icons"
-import { useFirestore } from "./../../../hooks/useFirestore";
-import { AuthContext } from "../../../Contexts/AuthProviderContext";
+import { Button, Collapse, Typography } from "antd";
+import React, { useContext, useMemo } from "react";
+import "./RoomList.scss";
+import { PlusSquareOutlined, CaretRightOutlined } from "@ant-design/icons";
+import useFirestore from "../../../hooks/useFirestore";
+import { RoomContext } from "../../../Contexts/AppProviderContext";
 const { Panel } = Collapse;
 
 export default function RoomList() {
-  const { user } = useContext(AuthContext)
-
-  const roomCondition = useMemo(() => {
-    return  {
-      fieldsName: "members",
-      operator: 'array-contains',
-      compareValue: user.uid
-    }
-  }, [user.uid])
-  const rooms = useFirestore("rooms", roomCondition)
-
+  const { rooms } = useContext(RoomContext);
+  
   return (
-    <Collapse className="room-list" defaultActiveKey={['1']}>
-      <Panel className="room-list__panel" header="List Room" key='1' style={{color:"white"}}>
+    <Collapse className="room-list" defaultActiveKey={["1"]}>
+      <Panel
+        className="room-list__panel"
+        header="List Room"
+        key="1"
+        style={{ color: "white" }}
+      >
         <div className="room-list__detail">
-          <div>
-            <CaretRightOutlined />
-            <Typography.Link>Room 1</Typography.Link>
-          </div>
-          <div>
-            <CaretRightOutlined />
-            <Typography.Link>Room 2</Typography.Link>
-          </div>
-          <div>
-            <CaretRightOutlined />
-            <Typography.Link >Room 3</Typography.Link>
-          </div>
+          {rooms.map((room, index) => {
+            return (
+              <div>
+                <CaretRightOutlined />
+                <Typography.Link key={ room.id.toString() }>{ room.name }</Typography.Link>
+              </div>
+            );
+          })}
         </div>
-        <Button type="text" icon={<PlusSquareOutlined />}>Add Room</Button>
+        <Button type="text" icon={<PlusSquareOutlined />}>
+          Add Room
+        </Button>
       </Panel>
     </Collapse>
-  )
+  );
 }
