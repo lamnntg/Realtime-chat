@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import ChatRoom from "./components/ChatRoom";
 import AuthProviderContext from "./Contexts/AuthProviderContext";
 import AppProviderContext from "./Contexts/AppProviderContext";
+import AddRoomModal from "./components/Modal/AddRoomModal";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <AddRoomModal />
       </AppProviderContext>
     </AuthProviderContext>
     </BrowserRouter>

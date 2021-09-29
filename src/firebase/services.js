@@ -34,3 +34,22 @@ export const findUserExist = async (collectionObject, uid) => {
 
   return !user.empty;
 }
+
+/**
+ * addRoom
+ * 
+ * @param {object} data 
+ */
+ export const addRoom = async (data) => {
+  try {
+    const docRef = await addDoc(collection(db, "rooms"), 
+      {
+        ...data,
+        create_at: Date.now()
+      }
+    );
+    console.log("Document room : ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}

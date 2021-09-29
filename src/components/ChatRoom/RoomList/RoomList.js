@@ -9,7 +9,11 @@ const { Panel } = Collapse;
 
 export default function RoomList() {
   const { rooms } = useContext(AppContext);
-  const { isAddRoomVisible, setIsAddRoomVisible } = useContext(AppContext);
+  const { setIsAddRoomVisible } = useContext(AppContext);
+
+  const handleAddRoom = () => {
+    setIsAddRoomVisible(true);
+  }
   
   return (
     <div>
@@ -30,16 +34,11 @@ export default function RoomList() {
               );
             })}
           </div>
-          <Button type="text" icon={<PlusSquareOutlined />} onClick={setIsAddRoomVisible(true)}>
+          <Button type="text" icon={<PlusSquareOutlined />} onClick={handleAddRoom}>
             Add Room
           </Button>
         </Panel>
       </Collapse>
-      {
-        isAddRoomVisible
-        ? <AddRoomModal />
-        : null
-      }
     </div>
     
   );

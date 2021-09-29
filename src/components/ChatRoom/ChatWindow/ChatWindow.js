@@ -5,6 +5,7 @@ import { UserAddOutlined, SendOutlined } from '@ant-design/icons';
 import Message from '../Message/Message';
 
 export default function ChatWindow() {
+  
   useEffect(() => {
     
     return () => {
