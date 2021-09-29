@@ -1,11 +1,15 @@
 import "./ChatWindow.scss"
 import { Avatar, Button, Tooltip, Input, Affix, Form } from 'antd'
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext, useMemo } from 'react'
 import { UserAddOutlined, SendOutlined } from '@ant-design/icons';
 import Message from '../Message/Message';
+import { AppContext } from "../../../Contexts/AppProviderContext";
 
 export default function ChatWindow() {
-  
+  const { rooms, sellectedRoom } = useContext(AppContext);
+  console.log(sellectedRoom);
+
+
   useEffect(() => {
     
     return () => {
@@ -18,8 +22,8 @@ export default function ChatWindow() {
       <header>
         <div className="room-infor">
           <p>
-            Room1
-            <span>Day la room 1</span>
+            { sellectedRoom && sellectedRoom.name }
+            <span>{ sellectedRoom && sellectedRoom.description }</span>
           </p>
         </div>
         <div className="room-users">

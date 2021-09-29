@@ -53,3 +53,17 @@ export const findUserExist = async (collectionObject, uid) => {
     console.error("Error adding document: ", e);
   }
 }
+
+/**
+ * addRoom
+ * 
+ * @param {string} id 
+ */
+ export const getRoom = async (id) => {
+
+  const userRef = collection(db, "rooms");
+  const q = query(userRef, where("id", "==", id));
+  const user = await getDocs(q);
+
+  return user;
+}
