@@ -13,7 +13,7 @@ Firebase 9 thay đổi khá nhiều về cú pháp cũng về hàm.
 + B3 : tạo một services firebase để chưa các phương thức giao tiếp với db 
 + B4 : sử dụng firebase emulator để tránh việc tốn tài nguyên trong quá trình làm việc 
 + B5 : chú ý sử dụng useContext -> Tránh việc sử dụng hàm lấy từ useContext vào thẳng onClick
-+ B6 : 
++ B6 : DebounceSelect 
 
 **Use Antd & antd logo**
 - install node-sass

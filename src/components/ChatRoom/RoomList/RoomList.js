@@ -27,21 +27,19 @@ export default function RoomList() {
           style={{ color: "white" }}
         >
           <div className="room-list__detail">
-            {rooms.map((room, index) => {
-              return (
-                <div>
-                  <CaretRightOutlined />
-                  <Typography.Link
-                    key={room.id.toString()}
-                    onClick={() => {
-                      sellectRoom(room.id)
-                    }}
-                  >
-                    {room.name}
-                  </Typography.Link>
-                </div>
-              );
-            })}
+            {rooms.map((room, index) => 
+              <div>
+                <CaretRightOutlined />
+                <Typography.Link
+                  key={ room.id }
+                  onClick={() => {
+                    sellectRoom(room.id)
+                  }}
+                >
+                  {room.name}
+                </Typography.Link>
+              </div>
+            )}
           </div>
           <Button
             type="text"

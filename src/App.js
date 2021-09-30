@@ -5,6 +5,7 @@ import ChatRoom from "./components/ChatRoom";
 import AuthProviderContext from "./Contexts/AuthProviderContext";
 import AppProviderContext from "./Contexts/AppProviderContext";
 import AddRoomModal from "./components/Modal/AddRoomModal";
+import InviteUsers from "./components/Modal/InviteUsers";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           </Switch>
         </div>
         <AddRoomModal />
+        <InviteUsers />
       </AppProviderContext>
     </AuthProviderContext>
     </BrowserRouter>

@@ -18,7 +18,6 @@ const useFirestore = (collectionRef, condition) => {
     );
 
     const unsubscribe = onSnapshot(queryDB, (querySnapshot) => {
-      console.log(querySnapshot);
       const documents = [];
       querySnapshot.forEach((doc) => {
         documents.push({...doc.data(), id: doc.id});
