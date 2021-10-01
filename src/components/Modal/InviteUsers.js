@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
-import { Form, Modal, Input, Select } from "antd";
+import React, { useContext, useState } from "react";
+import { Avatar, Modal, Tooltip, Select } from "antd";
 import { AppContext } from "../../Contexts/AppProviderContext";
-import { AuthContext } from "../../Contexts/AuthProviderContext";
-import { addRoom } from "../../firebase/services";
+import { updateRoom } from "../../firebase/services";
 import { debounce } from "lodash";
 const { Option } = Select;
 
@@ -11,26 +10,32 @@ const DebounceSelect = ({ fetchOption, debounceTimeout = 300, ...props}) => {
 }
 
 export default function InviteUsers() {
-  const { isInviteUsersVisible, setIsInviteUsersVisible } = useContext(AppContext);
-  const { user } = useContext(AuthContext);
+  const [ inviteUserId, setInviteUserId ] = useState('');
 
+  const { isInviteUsersVisible, setIsInviteUsersVisible, sellectedRoomId } = useContext(AppContext);
+  const { users } = useContext(AppContext);
+  
   function onChange(value) {
+    setInviteUserId(value);
     console.log(`selected ${value}`);
   }
   
-  function onBlur() {
-    console.log('blur');
-  }
+  // function onBlur() {
+  //   console.log('blur');
+  // }
   
-  function onFocus() {
-    console.log('focus');
-  }
+  // function onFocus() {
+  //   console.log('focus');
+  // }
   
-  function onSearch(val) {
-    console.log('search:', val);
-  }
+  // function onSearch(val) {
+  //   console.log('search:', val);
+  // }
   
-  const handleOK = () => {
+  const handleOK = async () => {
+    await updateRoom(inviteUserId, sellectedRoomId);
+
+    setInviteUserId('');
     setIsInviteUsersVisible(false);
   }
 
@@ -48,20 +53,24 @@ export default function InviteUsers() {
       >
         <Select
             showSearch
-            style={{ width: 200 }}
+            style={{ width: 300 }}
             placeholder="Select a person"
             optionFilterProp="children"
             onChange={onChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            onSearch={onSearch}
-            filterOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
+            // onFocus={onFocus}
+            // onBlur={onBlur}
+            // onSearch={onSearch}
         >
-            <Option value="jack">Jack</Option>
-            <Option value="lucy">Lucy</Option>
-            <Option value="tom">Tom</Option>
+          {
+            users.map(user =>
+              <Option key={user.uid} value={user.uid}>
+                <Tooltip title={ user.displayName } key={ user.uid } >
+                    <Avatar size="small" src={ user.photoURL } style={{ marginRight: "10px" }}>A</Avatar>
+                </Tooltip>
+                { user.displayName }
+              </Option>
+            )
+          }
         </Select>
       </Modal>
     </div>

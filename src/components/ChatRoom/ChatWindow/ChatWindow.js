@@ -1,5 +1,5 @@
 import "./ChatWindow.scss"
-import { Avatar, Button, Tooltip, Input, Breadcrumb, Form } from 'antd'
+import { Avatar, Button, Tooltip, Input, Form } from 'antd'
 import React, { useEffect, useContext, useMemo } from 'react'
 import { UserAddOutlined, SendOutlined } from '@ant-design/icons';
 import Message from '../Message/Message';
@@ -65,7 +65,7 @@ export default function ChatWindow() {
         </div>
       </div>
       :
-      <Breadcrumb> Choose Room Chat </Breadcrumb>
+      <h2>Choose Room Chat, Please</h2>
     }
     </div>
   )

@@ -1,6 +1,7 @@
 import React, { useContext, useMemo, useState } from "react";
 import { AuthContext } from "./AuthProviderContext";
 import useFirestore from "../hooks/useFirestore";
+import useFireStoreListUser from "../hooks/useFireStoreListUser";
 
 export const AppContext = React.createContext();
 
@@ -34,6 +35,8 @@ export default function AppProviderContext({ children }) {
 
   const usersRoom = useFirestore("users", userCondition);
 
+  const users = useFireStoreListUser("users");
+
   return (
     <AppContext.Provider
       value={{
@@ -45,7 +48,8 @@ export default function AppProviderContext({ children }) {
         sellectedRoom,
         usersRoom,
         isInviteUsersVisible, 
-        setIsInviteUsersVisible
+        setIsInviteUsersVisible,
+        users
       }}
     >
       {children}
