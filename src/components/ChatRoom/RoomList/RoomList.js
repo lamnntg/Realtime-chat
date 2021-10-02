@@ -28,10 +28,11 @@ export default function RoomList() {
         >
           <div className="room-list__detail">
             {rooms.map((room, index) => 
-              <div>
+              <div 
+                key={ room.id }
+              >
                 <CaretRightOutlined />
                 <Typography.Link
-                  key={ room.id }
                   onClick={() => {
                     sellectRoom(room.id)
                   }}

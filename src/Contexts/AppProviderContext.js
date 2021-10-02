@@ -1,7 +1,7 @@
 import React, { useContext, useMemo, useState } from "react";
 import { AuthContext } from "./AuthProviderContext";
 import useFirestore from "../hooks/useFirestore";
-import useFireStoreListUser from "../hooks/useFireStoreListUser";
+import useFireStoreList from "../hooks/useFireStoreList";
 
 export const AppContext = React.createContext();
 
@@ -35,7 +35,7 @@ export default function AppProviderContext({ children }) {
 
   const usersRoom = useFirestore("users", userCondition);
 
-  const users = useFireStoreListUser("users");
+  const users = useFireStoreList("users");
 
   return (
     <AppContext.Provider

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase/config";
 
-const useFireStoreListUser = (collectionRef) => {
+const useFireStoreList = (collectionRef) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -21,4 +21,4 @@ const useFireStoreListUser = (collectionRef) => {
   return users;
 };
 
-export default useFireStoreListUser;
+export default useFireStoreList;

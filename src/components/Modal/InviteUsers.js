@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Avatar, Modal, Tooltip, Select } from "antd";
 import { AppContext } from "../../Contexts/AppProviderContext";
-import { updateRoom } from "../../firebase/services";
+import { updateRoom, getRoom } from "../../firebase/services";
 import { debounce } from "lodash";
 const { Option } = Select;
 

@@ -1,5 +1,5 @@
 import { db } from "./config";
-import { query, getDocs, where, addDoc, collection, updateDoc } from "firebase/firestore"; 
+import { query, getDocs, where, addDoc, collection, updateDoc, arrayUnion, doc } from "firebase/firestore"; 
 
 /**
  * 
@@ -11,7 +11,7 @@ export const addDocument = async (collectionObject, data) => {
     const docRef = await addDoc(collection(collectionObject, "users"), 
       {
         ...data,
-        create_at: Date.now()
+        created_at: Date.now()
       }
     );
     console.log("Document written with ID: ", docRef.id);
@@ -45,7 +45,7 @@ export const findUserExist = async (collectionObject, uid) => {
     const docRef = await addDoc(collection(db, "rooms"), 
       {
         ...data,
-        create_at: Date.now()
+        created_at: Date.now()
       }
     );
     console.log("Document room : ", docRef.id);
@@ -75,24 +75,33 @@ export const findUserExist = async (collectionObject, uid) => {
  * @param {string} roomId
  */
  export const updateRoom = async (userId, roomId) => {
-  const roomRef =query( collection(db, "rooms"));
-  const rooms = await getDocs(roomRef);
-  const room = {};
-  rooms.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    if ( doc.id === roomId) {
-      Object.assign(room, doc)
-    }
-  });
-  console.log(1111, room);
-
+  const roomRef = doc(db, "rooms", roomId);
   try {
-    await updateDoc(room, 
+    await updateDoc(roomRef, 
       {
-        members : [...room.data().members, userId]
+        members : arrayUnion(userId)
       }
     );
-    console.log("Document update with ID: ", room.id);
+    console.log("Document update with ID: ",roomId);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+/**
+ * createMessage
+ * 
+ * @param {string} data
+ */
+ export const createMessage = async (data) => {
+  try {
+    const docRef = await addDoc(collection(db, "messages"), 
+      {
+        ...data,
+        created_at: Date.now()
+      }
+    );
+    console.log("Document message : ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
