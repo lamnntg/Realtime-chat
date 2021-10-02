@@ -69,12 +69,12 @@ export default function ChatWindow() {
           <div className="message">
             <div className="message-list">
               {
-                messages.map((message) => 
+                messages.slice(0).reverse().map((message) => 
                   <Message
                     key={ message.id }
                     name={ message.displayName }
                     avatarUrl={ message.photoURL }
-                    createdAt={ new Date( message.create_at).toString() }
+                    createdAt={ new Date( message.created_at).toString() }
                     message={ message.message }
                   />
                 )
